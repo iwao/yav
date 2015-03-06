@@ -1,0 +1,258 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix crm: <http://purl.org/NET/cidoc-crm/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix yav: <http://yafjp.org/terms/yav/1.0#> .
+
+
+yav:Thing a rdfs:Class ;
+	rdfs:label "Thing"@ja ;
+	rdfs:subClassOf owl:Thing .
+
+yav:Works a rdfs:Class ;
+	rdfs:label "Works"@en ;
+	rdfs:label "作品"@ja ;
+	rdfs:subClassOf yav:Thing .
+
+yav:自筆文書 a rdfs:Class ;
+	rdfs:subClassOf yav:Works ;
+	rdfs:label "自筆文書"@ja .
+	
+yav:図書 a rdfs:Class ;
+	rdfs:subClassOf yav:Works ;
+	rdfs:label "図書"@ja .
+
+yav:挿絵類 a rdfs:Class ;
+	rdfs:subClassOf yav:Works ;
+	rdfs:label "挿絵類"@ja .
+
+yav:地図類 a rdfs:Class ;
+	rdfs:subClassOf yav:Works ;
+	rdfs:label "地図類"@ja .
+
+yav:台本 a rdfs:Class ;
+	rdfs:subClassOf yav:Works ;
+	rdfs:label "台本"@ja .
+
+yav:representedAt a rdf:Property ;
+	rdfs:label "発表場所"@ja ;
+	rdfs:label "represented at"@en ;
+	rdfs:domain yav:Works ;
+	rdfs:range xsd:string .
+
+yav:ownBy a rdf:Property ;
+	rdfs:label "所有者"@ja ;
+	rdfs:label "own by"@en ;
+	rdfs:subPropertyOf bibo:own ;
+	rdfs:domain yav:Works ;
+	rdfs:range rdfs:Resource .
+
+yav:currentLocationAt a rdf:Property ;
+	rdfs:label "現在の所蔵館"@ja ;
+	rdfs:label "currelnt location"@en ;
+	rdfs:subPropertyOf crm:P55_has_current_location ;
+	rdfs:domain yav:Works ;
+	rdfs:range rdfs:Resource .
+
+yav:provenance a rdf:Property ;
+	rdfs:label "provenance"@en ;
+	rdfs:label "来歴"@ja ;
+	rdfs:domain yav:Works ;
+	rdfs:range rdfs:Resource .
+
+yav:type a rdf:Property ;
+	rdfs:label "type"@en ;
+	rdfs:label "タイプ"@ja ;
+	rdfs:domain yav:Works ;
+	rdfs:range rdfs:Resource .
+
+yav:birthPlace a rdf:Property ;
+	rdfs:label "birth place"@en ;
+	rdfs:label "出身地"@ja ;
+	rdfs:domain yav:Artist ;
+	rdfs:range rdfs:Resource .
+
+yav:personalEvent a rdf:Property ;
+	rdfs:label "personal event"@en ;
+	rdfs:domain yav:Artist ;
+	rdfs:range rdfs:Resource .
+
+yav:Artist a rdfs:Class ;
+	rdfs:label "Artist"@en ;
+	rdfs:label "作家"@ja ;
+	rdfs:subClassOf foaf:Agent .
+
+yav:Exhibition a rdfs:Class ;
+	rdfs:label "Exhibition"@en ;
+	rdfs:label "展覧会"@ja ;
+	rdfs:subClassOf yav:Event .
+
+yav:award a rdf:Property ;
+	rdfs:label "award"@en ;
+	rdfs:label "賞"@ja ;
+	rdfs:domain yav:Artist ;
+	rdfs:range rdfs:Resource .
+
+yav:works a rdf:Property ;
+	rdfs:label "works"@en ;
+	rdfs:label "作品"@ja ;
+	rdfs:domain yav:Artist ;
+	rdfs:range rdf:rdfs:Works .
+
+yav:movie a rdf:Property ;
+	rdfs:label "movie"@en ;
+	rdfs:label "動画"@ja ;
+	rdfs:domain yav:Artist ;
+	rdfs:range rdfs:Resource .
+
+yav:Gallery a rdfs:Class ;
+	rdfs:label "Gallery"@en ;
+	rdfs:label "ギャラリー"@en ;
+	rdfs:subClassOf yav:Place .
+
+yav:Place a rdfs:Class ;
+	rdfs:label "Place"@en ;
+	rdfs:label "場所"@en ;
+	rdfs:subClassOf schema:Place .
+
+yav:Event a rdfs:Class ;
+	rdfs:label "Event"@en ;
+	rdfs:label "イベント"@en ;
+	rdfs:subClassOf schema:Event .
+
+yav:GallerySpec a rdfs:Class ;
+	rdfs:label "Spec"@en ;
+	rdfs:label "仕様"@en ;
+	rdfs:subClassOf yav:Thing .
+
+yav:wayOfApply a rdf:Property ;
+	rdfs:label "way of apply"@en ;
+	rdfs:label "申込み方法"@ja ;
+	rdfs:domain yav:Event ;
+	rdfs:range xsd:string .
+
+yav:spec a rdf:Property ;
+	rdfs:label "spec"@en ;
+	rdfs:label "仕様"@ja ;
+	rdfs:domain yav:Gallery ;
+	rdfs:range yav:GallerySpec .
+
+yav:floorSpace a rdf:Property ;
+	rdfs:label "floor space"@en ;
+	rdfs:label "床面積"@ja ;
+	rdfs:domain yav:Spec ;
+	rdfs:range xsd:string .
+
+yav:wallArea a rdf:Property ;
+	rdfs:label "wall area"@en ;
+	rdfs:label "壁面積"@ja ;
+	rdfs:domain yav:Spec ;
+	rdfs:range xsd:string .
+
+yav:ceilingHeight a rdf:Property ;
+	rdfs:label "ceiling height"@en ;
+	rdfs:label "天井高"@ja ;
+	rdfs:domain yav:Spec ;
+	rdfs:range xsd:string .
+
+<!-- below added 2015/01/08 -->
+
+yav:Category a rdfs:Class ;
+	rdfs:label "Category"@en ;
+	rdfs:label "カテゴリー"@ja ;
+	rdfs:subClassOf yav:Thing .
+
+yav:location a rdf:Property ;
+	rdfs:label "location"@en ;
+	rdfs:label "場所"@ja ;
+	rdfs:domain yav:Event ;
+	rdfs:range xsd:string .
+
+yan:Participant a rdfs:Class ;
+	rdfs:label "Participant"@en ;
+	rdfs:label "参加"@ja ;
+	rdfs:subClassOf yav:Thing .
+
+yan:Role a rdfs:Class ;
+	rdfs:label "Role"@en ;
+	rdfs:label "ロール"@ja ;
+	rdfs:subClassOf yav:Thing .
+
+yav:role a rdf:Property ;
+	rdfs:label "role"@en ;
+	rdfs:label "ロール"@ja ;
+	rdfs:domain yav:Event ;
+	rdfs:range yav:Role .
+
+yav:participant a rdf:Property ;
+	rdfs:label "participant"@en ;
+	rdfs:label "参加"@ja ;
+	rdfs:domain yav:Event ;
+	rdfs:range owl:Thing .
+
+yav:programUnit a rdf:Property ;
+	rdfs:label "program unit"@en ;
+	rdfs:label "構成プログラム"@ja ;
+	rdfs:domain yav:Event ;
+	rdfs:range yav:Event .
+
+yan:ProgramUnit a rdfs:Class ;
+	rdfs:label "Proguram Unit"@en ;
+	rdfs:label "構成プログラム"@ja ;
+	rdfs:subClassOf yav:Event .
+
+yav:work a rdf:Property ;
+	rdfs:label "work"@en ;
+	rdfs:label "作品"@ja ;
+	rdfs:domain yav:Event ;
+	rdfs:comment "上演作品や展示作品などを指示するための属性"@ja ;
+	rdfs:range yav:Work .
+
+yav:sortKey a rdf:Property ;
+	rdfs:label "sortKey"@en ;
+	rdfs:label "ソートキー"@ja ;
+	rdfs:domain yav:Event ;
+	rdfs:comment "演目や作品等の並び順を指示するために用いる"@ja ;
+	rdfs:range xsd:integer .
+
+yav:player a rdf:Property ;
+	rdfs:label "plyer"@en ;
+	rdfs:label "演者"@ja ;
+	rdfs:domain yav:Event ;
+	rdfs:comment "演奏者や出演者などを支持するための属性"@ja ;
+	rdfs:range foaf:Agent .
+
+yav:Player a rdfs:Class ;
+	rdfs:label "Player"@en ;
+	rdfs:label "縁者"@ja ;
+	rdfs:subClassOf foaf:Agent .
+
+yav:part a rdf:Property ;
+	rdfs:label "part"@en ;
+	rdfs:label "パート"@ja ;
+	rdfs:domain yav:Player ;
+	rdfs:comment "役や担当楽器、パートなど"@ja ;
+	rdfs:range owl:Thing .
+
+yav:speciality a rdf:Property ;
+	rdfs:label "speciality"@en ;
+	rdfs:label "専攻や専門分野"@ja ;
+	rdfs:domain yav:Player ;
+	rdfs:range owl:Thing .
+
+yav:address a rdf:Property ;
+	rdfs:label "address"@en ;
+	rdfs:label "住所"@ja ;
+	rdfs:domain yav:Things ;
+	rdfs:range owl:Thing .
+
+yav:scheduleNote a rdf:Property ;
+	rdfs:label "schedule note"@en ;
+	rdfs:label "スケジュール詳細"@ja ;
+	rdfs:domain yav:Event ;
+	rdfs:range owl:Thing .
+
+
+
+
